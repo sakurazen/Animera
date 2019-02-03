@@ -1,0 +1,9 @@
+<%= form_for(@anime) do |f| %>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>アニメのタイトル</label>
+      <%= f.text_field :title, class: 'form-control', autocomplete: 'off' %>
+    </div>  
+    <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+  </div>
+<% end %>

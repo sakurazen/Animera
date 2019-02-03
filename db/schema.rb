@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190127111013) do
+ActiveRecord::Schema.define(version: 20190129192314) do
+
+  create_table "animes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.integer  "anime_score"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_animes_on_user_id", using: :btree
+  end
+
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "episode_no"
+    t.integer  "episode_score"
+    t.text     "comment",       limit: 65535
+    t.integer  "user_id"
+    t.integer  "anime_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["anime_id"], name: "index_reviews_on_anime_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -20,4 +41,7 @@ ActiveRecord::Schema.define(version: 20190127111013) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "animes", "users"
+  add_foreign_key "reviews", "animes"
+  add_foreign_key "reviews", "users"
 end

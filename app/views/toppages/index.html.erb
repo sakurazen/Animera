@@ -1,10 +1,13 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <%= render 'animes/animes', animes:@animes %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the Animera!</h1>
       <%= link_to 'Animeraを始める!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
+  </div>
+  <div class="text-center">
+    <h2>Animeraは自分用のアニメ評価を管理するサイトです。</h2>
   </div>
 <% end %>
