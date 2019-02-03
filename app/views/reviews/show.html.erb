@@ -1,5 +1,14 @@
 <%= form_for(@review) do |f| %>
   <div class="col-md-4">
+    <% if @review.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @review.errors.full_messages.each do |review| %>
+            <li><%= review %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     
     <%= f.hidden_field :anime_id %>
     
@@ -20,7 +29,7 @@
     
     <div class="form-group">
       <label>感想</label>
-      <%= f.text_area :comment, class: 'form-control', autocomplete: 'off' %>
+      <%= f.text_area :comment, class: 'form-control', rows: 10, autocomplete: 'off' %>
     </div>
     
     <%= f.submit '編集決定', class: 'btn btn-primary btn-block' %>

@@ -1,6 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:index, :destroy]
+  
+  def index
+    @reviews = Review.all.page(params[:page])
+  end
   
   def show
     @review = Review.find(params[:id])
@@ -36,7 +40,7 @@ class ReviewsController < ApplicationController
       redirect_to @review.anime
     else
       flash.now[:danger] = '評価は更新されませんでした'
-      render @review
+      render :show
     end
   end
   

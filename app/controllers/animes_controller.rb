@@ -1,7 +1,11 @@
 class AnimesController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy]
-
+  
+  def index
+    @animes = Anime.all.page(params[:page])
+  end
+  
   def show
     if logged_in?
       @review = current_user.reviews.build  # form_for 用
@@ -22,7 +26,7 @@ class AnimesController < ApplicationController
     else
       @animes = current_user.animes.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'アニメの登録に失敗しました。'
-      render 'toppages/index'
+      render "animes/new"
     end
   end
 

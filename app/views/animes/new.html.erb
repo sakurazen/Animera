@@ -1,5 +1,14 @@
 <%= form_for(@anime) do |f| %>
   <div class="col-md-4">
+    <% if @anime.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @anime.errors.full_messages.each do |anime| %>
+            <li><%= anime %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="form-group">
       <label>アニメのタイトル</label>
       <%= f.text_field :title, class: 'form-control', autocomplete: 'off' %>
