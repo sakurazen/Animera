@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
   
   def show
     @review = Review.find(params[:id])
+    @anime = Anime.find(params[:anime_id])
   end
 
   def new

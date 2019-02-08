@@ -16,3 +16,11 @@
 .add_review {
   margin-top: 20px;
 }
+
+.anime_epi {
+  float: left;
+}
+
+.score {
+  margin-right: 10px;
+}

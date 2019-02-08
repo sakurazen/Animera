@@ -36,10 +36,25 @@ class AnimesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def update
+    @anime = Anime.find(params[:id])
+    if logged_in?
+      @review = current_user.reviews.build  # form_for 用
+      @reviews = current_user.reviews.order('episode_no DESC').page(params[:page])
+    end
+    if @anime.update(anime_params)
+      flash[:success] = '得点は正常に更新されました'
+      redirect_to @anime
+    else
+      flash.now[:danger] = '得点は更新されませんでした'
+      render :show
+    end
+  end
+  
   private
   
   def anime_params
-    params.require(:anime).permit(:title)
+    params.require(:anime).permit(:title, :anime_score)
   end
   
   def correct_user

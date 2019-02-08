@@ -7,6 +7,7 @@
           <h2><%= link_to anime.title, anime_path(anime) %></h2>
         </div>
         <div>
+          <span class="score">score:<%= "#{anime.anime_score}点" %></span>
           <% if current_user == anime.user %>
             <%= link_to "Delete", anime, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% end %>

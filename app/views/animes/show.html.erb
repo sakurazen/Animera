@@ -1,9 +1,27 @@
-<link rel="stylesheet" href="anime.css">
 <div class="container">
   <div class="row">
-    <div class="pull-left"><h1><%= @anime.title + 'の評価' %></h1></div>
-    <div class="add_review col-md-offset-1 col-md-2"><%= link_to '感想を追加', new_review_path(anime_id: @anime.id), class: 'btn btn-info btn-lg' %></div>
+    <div class="pull-left"><h1><%= @anime.title %></h1></div>
+    <div class="add_review col-md-offset-1 col-md-2"><%= link_to '感想を追加', new_review_path(anime_id: @anime.id), class: 'btn btn-info btn-lg' %>
   </div>
+  </div>
+    <%= form_for(@anime, html: { class: "form-horizontal" }) do |f| %>
+      <% if @anime.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @anime.errors.full_messages.each do |anime| %>
+              <li><%= anime %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <label class="control-label pull-left">得点</label>
+        <div class="col-md-2">
+          <%= f.text_field :anime_score, class: 'form-control', autocomplete: 'off' %>
+        </div>
+      <%= f.submit '登録', class: 'btn btn-primary' %>
+    <% end %>
+  
+  <%= render 'reviews/reviews', reviews:@reviews %>
 </div>
 
-<%= render 'reviews/reviews', reviews:@reviews %>
