@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="anime.css">
 <div class="container">
   <div class="row">
-    <div class="col-md-4"><h1><%= @anime.title + 'の評価' %></h1></div>
-    <div class="col-md-offset-2 col-md-2"><%= link_to '感想を追加', new_review_path(anime_id: @anime.id), class: 'btn btn-info btn-lg' %></div>
+    <div class="pull-left"><h1><%= @anime.title + 'の評価' %></h1></div>
+    <div class="add_review col-md-offset-1 col-md-2"><%= link_to '感想を追加', new_review_path(anime_id: @anime.id), class: 'btn btn-info btn-lg' %></div>
   </div>
 </div>
 

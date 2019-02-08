@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+.add_review {
+  margin-top: 20px;
+}
